@@ -4,7 +4,11 @@ module.exports = { Schema, model } => {
         last_name: String,
         username: String,
         email: String,
-        isAdmin: Boolean
+        isAdmin: Boolean,
+        company: {
+           type: Schema.Types.ObjectId,
+           ref: 'Company'
+        }
     })
 
     return model('User', User)
