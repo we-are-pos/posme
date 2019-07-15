@@ -9,6 +9,12 @@ const app = express()
 app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(multer({
+    dest: './uploads',
+    rename: function (fieldname, filename) {
+        return filename;
+    },
+}));
 
 app.use(require('express-session')({
     secret: 'hotdog',
@@ -32,6 +38,6 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
-require('mongoose').connect('mongodb://localhost/posme_db', { useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true })
+require('mongoose').connect('mongodb://localhost:27017/posme_db', { useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true })
     .then(_ => app.listen(process.env.PORT || 3001))
     .catch(e => console.log(e))
