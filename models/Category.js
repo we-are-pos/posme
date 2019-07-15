@@ -5,8 +5,6 @@ module.exports = { Schema, model } => {
             type: Schema.Types.ObjectId,
             ref: 'Company'
         }
-        
-
     })
 
     return model('Category', Category)

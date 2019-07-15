@@ -4,8 +4,10 @@ module.exports = { Schema, model } => {
         desc: String,
         price: Number,
         inventory: Number,
-        img: { 
-            data: Buffer, contentType: String 
+        tags: Array,
+        img: {
+            data: Buffer,
+            contentType: String
         },
         item: {
             type: Schema.Types.ObjectId,
@@ -14,5 +16,5 @@ module.exports = { Schema, model } => {
 
     })
 
-return model('Item', Item)
+    return model('Item', Item)
 }

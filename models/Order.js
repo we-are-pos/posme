@@ -1,6 +1,7 @@
 module.exports = { Schema, model } => {
     const Order = new Schema({
-        name: String,
+        orderNumber: Number,
+        items: Array,
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User'
