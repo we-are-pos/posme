@@ -9,6 +9,12 @@ const app = express()
 app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(multer({
+    dest: './uploads',
+    rename: function (fieldname, filename) {
+        return filename;
+    },
+}));
 
 app.use(require('express-session')({
     secret: 'hotdog',
