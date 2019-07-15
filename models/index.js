@@ -1,9 +1,14 @@
 const { Schema, model } = require('mongoose')
+const User = require('./User.js')
+const Company = require('./Company.js')
+const Category = require('./Category.js')
+const Item = require('./Item.js')
+const Order = require('./Order.js')
 
 module.exports = {
-    User: require('./User.js')(Schema, model)
-    Company: require('./Company.js')(Schema, model)
-    Category: require('./Category.js')(Schema, model)
-    Item: require('./Item.js')(Schema, model)
-    Order: require('./Order.js')(Schema, model)
+  User: User(Schema, model),
+  Company: Company(Schema, model),
+  Category: Category(Schema, model),
+  Item: Item(Schema, model),
+  Order: Order(Schema, model)
 }

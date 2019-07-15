@@ -1,27 +1,21 @@
 const express = require('express')
-const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 const { User } = require('./models')
+const { join } = require('path')
+const PORT = process.env.PORT || 3001
 const app = express()
+const routes = require('./routes')
+const multer = require('multer')
 
-app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(multer({
-    dest: './uploads',
-    rename: function (fieldname, filename) {
-        return filename;
-    },
-}));
-
 app.use(require('express-session')({
-    secret: 'hotdog',
-    resave: false,
-    saveUninitialized: false
+  secret: 'hotog',
+  resave: false,
+  saveUninitialized: false
 }))
-
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -29,15 +23,30 @@ passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 passport.use(new JWTStrategy({
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'hotdog'
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: 'hotdog'
 }, (jwtPayload, cb) => User.findById(jwtPayload.id)
-    .then(user => cb(null, user))
-    .catch(err => cb(err, null))
+  .then(user => cb(null, user))
+  .catch(err => cb(err, null))
 ))
 
-require('./routes')(app)
+app.use(express.static(join(__dirname, 'client', 'build')))
 
-require('mongoose').connect('mongodb://localhost:27017/posme_db', { useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true })
-    .then(_ => app.listen(process.env.PORT || 3001))
-    .catch(e => console.log(e))
+routes(app)
+
+require('mongoose').connect('mongodb://localhost/posme_db', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: true
+})
+  .then(_ => app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`)
+  }))
+  .catch(e => console.log(e))
+
+// app.use(multer({ dest: './uploads',
+//   rename: function (fieldname, filename) {
+//     return filename
+//   }
+// })
+// )
