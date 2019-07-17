@@ -12,7 +12,7 @@ const multer = require('multer')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(require('express-session')({
-  secret: 'hotog',
+  secret: 'hotdog',
   resave: false,
   saveUninitialized: false
 }))
