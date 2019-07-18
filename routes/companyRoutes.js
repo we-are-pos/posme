@@ -3,8 +3,8 @@ const { Company } = require('../models')
 module.exports = app => {
     app.get('/company', (req, res) => {
         Company.find({}, (e, company) => {
-            if (e) throw e
-            res.json(company)
+            .then(company => res.json(company))
+            .catch(e => console.log(e))            
         })
     })
     app.get('/company/:_id', (req, res) => {
