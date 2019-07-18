@@ -6,12 +6,13 @@ module.exports = app => {
             if (e) throw e
             res.json(company)
         })
-    })    
+    })
     app.get('/company/:_id', (req, res) => {
-        Company.findById(req.params._id, (e, company) => {
-            if (e) throw e
-            res.json(company)
-        })
+        Company.findById(req.params._id)
+            .populate('users')
+            .populate('categories')
+            .then(company => res.json(company))
+            .catch(e => console.log(e))
     })
     app.post('/company', (req, res) => {
         Company.create(req.body, e => {
