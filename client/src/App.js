@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <>
         {/* <h1>We Are POSME</h1> */}
-        {/* <Login /> */}
+        <Login />
         <ThankYou />
       </>
     )
