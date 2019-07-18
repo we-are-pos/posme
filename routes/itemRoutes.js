@@ -1,4 +1,4 @@
-const { Item } = require('../models')
+const { Item, Category } = require('../models')
 
 module.exports = app => {
     app.get('/item', (req, res) => {
@@ -14,7 +14,11 @@ module.exports = app => {
     })
     app.post('/item', (req, res) => {
         Item.create(req.body)
-            .then(res.sendStatus(200))
+            .then(({ _id, category }) => {
+                Category.updateOne({ _id: category }, { $push: { items: _id } })
+                    .then(res.sendStatus(200))
+                    .catch(e => res.json(e))
+            })
             .catch(e => console.log(e))
     })
     app.put('/item/:_id', (req, res) => {

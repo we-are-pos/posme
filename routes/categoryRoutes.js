@@ -1,4 +1,4 @@
-const { Category } = require('../models')
+const { Category, Company } = require('../models')
 
 module.exports = app => {
     app.get('/category', (req, res) => {
@@ -15,7 +15,11 @@ module.exports = app => {
     })
     app.post('/category', (req, res) => {
         Category.create(req.body)
-            .then(res.sendStatus(200))
+            .then(({ _id, company }) => {
+                Company.updateOne({ _id: company }, { $push: { categories: _id } })
+                    .then(res.sendStatus(200))
+                    .catch(e => console.log(e))
+            })
             .catch(e => console.log(e))
     })
     app.put('/category/:_id', (req, res) => {

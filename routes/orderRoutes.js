@@ -1,4 +1,4 @@
-const { Order } = require('../models')
+const { Order, User } = require('../models')
 
 module.exports = app => {
     app.get('/order', (req, res) => {
@@ -15,7 +15,11 @@ module.exports = app => {
     })
     app.post('/order', (req, res) => {
         Order.create(req.body)
-            .then(res.sendStatus(200))
+            .then(({ _id, user }) => {
+                User.updateOne({ _id: user }, { $push: { orders: _id } })
+                    .then(res.sendStatus(200))
+                    .catch(e => console.log(e))
+            })
             .catch(e => console.log(e))
     })
     app.put('/order/:_id', (req, res) => {
