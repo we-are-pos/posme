@@ -2,10 +2,9 @@ const { Company } = require('../models')
 
 module.exports = app => {
     app.get('/company', (req, res) => {
-        Company.find({}, (e, company) => {
+        Company.find({})
             .then(company => res.json(company))
-            .catch(e => console.log(e))            
-        })
+            .catch(e => console.log(e))
     })
     app.get('/company/:_id', (req, res) => {
         Company.findById(req.params._id)
@@ -15,12 +14,18 @@ module.exports = app => {
             .catch(e => console.log(e))
     })
     app.post('/company', (req, res) => {
-        Company.create(req.body, e => {
-            if (e) throw e
-            res.sendStatus(200)
-        })
+        Company.create(req.body)
+            .then(res.sendStatus(200))
+            .catch(e => console.log(e))
     })
     app.put('/company/:_id', (req, res) => {
-        Company.findAndUpdate()
+        Company.findByIdAndUpdate({_id: req.params._id}, {$set: req.body})
+            .then(res.sendStatus(200))
+            .catch(e => console.log(e))
+    })
+    app.delete('/company/:_id', (req, res) => {
+        Company.findByIdAndDelete(req.params._id)
+            .then(res.sendStatus(200))
+            .catch(e => console.log(e))
     })
 }
