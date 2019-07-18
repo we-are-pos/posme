@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import MediaCard from './components/Card';
 import Login from './components/Login'
 import ThankYouPage from './pages/Thankyou'
+
 
 class App extends Component {
   render () {
