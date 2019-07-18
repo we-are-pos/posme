@@ -5,7 +5,15 @@ module.exports = (Schema, model) => {
     city: String,
     state: String,
     zip: String,
-    country: String
+    country: String,
+    users: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    categories: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }]
   })
 
   return model('Company', Company)

@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Company } = require('../models')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
@@ -16,16 +16,22 @@ module.exports = app => {
       company: req.body.company
     }), req.body.password, e => {
       if (e) throw e
-      User.authenticate()(req.body.username, req.body.password, (e, user) => {
-        if (e) throw e
-        res.json({ isLoggedIn: !!user, user: user.username, token: jwt.sign({ id: user._id }, 'hotdog') })
-      })
+      // Authenticates the user
+      User.authenticate()(req.body.username, req.body.password)
+        .then(({ user }) => {
+          // Updates the company user array with the new user
+          Company.update({ _id: user.company }, { $push: { users: user._id } })
+          // sends back JSON to be add to local storage
+            .then(_ => res.json({ isLoggedIn: !!user, user: user.username, company: user.company, token: jwt.sign({ id: user._id }, 'hotdog') }))
+            .catch(e => console.log(e))
+        })
     })
   })
+
   app.post('/login', (req, res) => {
     User.authenticate()(req.body.username, req.body.password, (e, user) => {
       if (e) throw e
-      res.json({ isLoggedIn: !!user, user: user.username, token: jwt.sign({ id: user._id }, 'hotdog') })
+      res.json({ isLoggedIn: !!user, user: user.username, company: user.company, token: jwt.sign({ id: user._id }, 'hotdog') })
     })
   })
 }
