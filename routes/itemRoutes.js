@@ -1,4 +1,8 @@
+const { Item } = require('../models')
 
+module.exports = app => {
+    
+}
 
 
 // This is the code to upload images into the database

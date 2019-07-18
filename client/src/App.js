@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import Calculator from './components/Calculator'
-import Card from './components/Card'
 import MediaCard from './components/Card';
+import Login from './components/Login'
+
 
 class App extends Component {
   render () {
     return (
       <>
       <h1>We Are POSME</h1>
-      <Calculator />
-      <Card />
+      {/* <h1>We Are POSME</h1> */}
+      <Login />
       </>
     )
   }

@@ -4,7 +4,11 @@ module.exports = (Schema, model) => {
     company: {
       type: Schema.Types.ObjectId,
       ref: 'Company'
-    }
+    },
+    items: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Item'
+    }]
   })
 
   return model('Category', Category)

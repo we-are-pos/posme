@@ -4,7 +4,9 @@ module.exports = (Schema, model) => {
     desc: String,
     price: Number,
     inventory: Number,
-    tags: Array,
+    tags: [{
+      type: String
+    }],
     img: {
       data: Buffer,
       contentType: String
@@ -12,7 +14,8 @@ module.exports = (Schema, model) => {
     item: {
       type: Schema.Types.ObjectId,
       ref: 'Category'
-    }
+    },
+
 
   })
   return model('Item', Item)
