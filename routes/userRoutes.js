@@ -20,7 +20,7 @@ module.exports = app => {
       User.authenticate()(req.body.username, req.body.password)
         .then(({ user }) => {
           // Updates the company user array with the new user
-          Company.update({ _id: user.company }, { $push: { users: user._id } })
+          Company.updateOne({ _id: user.company }, { $push: { users: user._id } })
           // sends back JSON to be add to local storage
             .then(_ => res.json({ isLoggedIn: !!user, user: user.username, company: user.company, token: jwt.sign({ id: user._id }, 'hotdog') }))
             .catch(e => console.log(e))
