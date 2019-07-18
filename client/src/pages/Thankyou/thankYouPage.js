@@ -14,19 +14,16 @@ const ThankYouPage = _ => {
           type='button' >
           Print
         </button>
-        <div className='divider' />
         <button
           className='text'
           type='button' >
           Text
         </button>
-        <div className='divider' />
         <button
           className='email'
           type='button' >
           Email
         </button>
-        <div className='divider' />
         <button
           className='cancel'
           type='button' >
