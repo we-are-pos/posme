@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import MediaCard from './components/Card';
 import Login from './components/Login'
-import ThankYouPage from './pages/Thankyou'
-
+import ThankYou from './components/ThankYou'
 
 class App extends Component {
   render () {
@@ -10,7 +8,7 @@ class App extends Component {
       <>
         {/* <h1>We Are POSME</h1> */}
         {/* <Login /> */}
-        <ThankYouPage />
+        <ThankYou />
       </>
     )
   }
