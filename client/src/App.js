@@ -1,4 +1,14 @@
 import React, { Component } from 'react'
+import Login from './components/Login'
+import Calculator from './components/Calculator/calculator'
+
+class App extends Component {
+  render () {
+    return (
+      <>
+      <h1>We Are POSME</h1>
+      <Login />
+      </>
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Login from './pages/Login'
 import ThankYou from './pages/ThankYou'
