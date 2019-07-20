@@ -13,7 +13,7 @@ const Calculator = _ => {
   const getDigit = (event, extraValue) => {
     let newTotal;
     if (extraValue) {
-      setCalcState({ total: event.currentTarget. id })
+      setCalcState({ total: event.currentTarget.id })
     } else {
     setCalcState({
       total: calcState.total 

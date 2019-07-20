@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,10 @@ import CardButton from '../CardButton'
 import CashButton from '../CashButton'
  
 const drawerWidth = 240;
+
+const defaultCount = {
+  count: 0
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,8 +40,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// const [countState, setCountState] = useState(defaultCount)
+
+// const handleClick = _ => {
+//   setCountState({ count: setCountState + 1 })
+// // }
+
 export default function PermanentDrawerLeft() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
@@ -72,6 +82,7 @@ export default function PermanentDrawerLeft() {
           >
             <Button variant="outlined" size="small">+</Button>
             <Button variant="outlined" size="small">-</Button>
+            <typography></typography>
           </Box>
         <Divider />
         <Box
