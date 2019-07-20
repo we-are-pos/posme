@@ -9,8 +9,20 @@ import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import ShoppingBag from './images/icon_bag.svg'
 import CardButton from '../CardButton'
-import CashButton from '../CashButton'
+import Calculator from '../Calculator'
  
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -26,20 +38,35 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: 300,
+    width: 372,
   },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3)
-  }
+  },
+  paymentButton: {
+    width: 158,
+    height: 80,
+    color: '#41C8E8'
+  },
 }));
 
 export default function PermanentDrawerLeft() {
   const classes = useStyles()
 
   const [count, setCountState] = useState(0)
+  const [open, setOpen] = React.useState(false);
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
 
   return (
     <div className={classes.root}>
@@ -88,10 +115,30 @@ export default function PermanentDrawerLeft() {
         >
         <Grid container spacing={2}>
           <Grid item xs={6}>
-          <CardButton />
+          <Button className={classes.paymentButton} variant="outlined" color="primary" onClick={handleClickOpen}>
+          CASH
+          </Button>
           </Grid>
           <Grid item xs={6}>
-          <CashButton />
+          <Button className={classes.paymentButton} variant="outlined" color="primary">
+          CARD
+          </Button>
+          {/* <CashButton onClick={handleClickOpen} /> */}
+          <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+        <Calculator />
+
+        </DialogContent>
+        
+      </Dialog>
           </Grid >
         </Grid>
         </Box>
