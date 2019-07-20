@@ -4,20 +4,24 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 // import Menu from '@material-ui/icons/MoreHoriz';
+
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexGrow: 1,
+    flexGrow: 1
   },
+  root2: {
+    display: 'flex',
+  },
+
   paper: {
     marginRight: theme.spacing(2),
   },
@@ -38,64 +42,63 @@ navBar: {
 
 export default function MenuListComposition() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [state, setState] = React.useState({
+    left: false,
+  });
 
-  function handleToggle() {
-    setOpen(prevOpen => !prevOpen);
-  }
-
-  function handleClose(event) {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setOpen(false);
-  }
+    setState({ ...state, [side]: open });
+  };
 
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        {['Home', 'Inventory', 'Sales', 'Sign Out'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+     
+    </div>
+  );
+
+  
   return (
+    <>
     <div className={classes.root}>
      
 {/* app bar */}
- <AppBar className={classes.navBar} position="static">
-        <Toolbar>
+        <AppBar className={classes.navBar} position="static" >
+          <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-          <Button
-          ref={anchorRef}
-          aria-controls="menu-list-grow"
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          {/* <Menu  className={classes.menuButton} />   */}
-
-        </Button>
+          <Button onClick={toggleDrawer('left', true)}>
+      <Menu  className={classes.menuButton} />  
+      </Button>
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+        {sideList('left')}
+      </Drawer>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             DESERT DEW
           </Typography>
         </Toolbar>
       </AppBar>
+      </div>
+     
 
 {/* app bar end */}
-        <Popper open={open} anchorEl={anchorRef.current} keepMounted transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper id="menu-list-grow">
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                    <MenuItem onClick={handleClose}>Inventory</MenuItem>
-                    <MenuItem onClick={handleClose}>Sales</MenuItem>
-                    <MenuItem onClick={handleClose}>Sign Out</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+
+
+      </>
   );
 }

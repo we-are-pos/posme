@@ -1,5 +1,7 @@
 import React from 'react'
 import NavBar from '../../components/Navbar'
+import AddTab from '../../components/AddTab'
+import AddItem from '../../components/AddItem'
 
 
 class Inventory extends React.Component {
@@ -7,7 +9,8 @@ class Inventory extends React.Component {
     return (
       <div>
       <NavBar />
-      <h1>Inventory Page</h1>
+      <AddTab />
+      <AddItem />
       </div>
     )
   }
