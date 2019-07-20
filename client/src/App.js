@@ -6,14 +6,14 @@ import ThankYou from './pages/ThankYouPage'
 import Inventory from './pages/Inventory'
 import Sales from './pages/Sales'
 import Home from './pages/Home'
-import Truck from './components/Truck'
+import Cart from './components/Cart'
 import ThankYouPage from './components/ThankYou';
 
 class App extends Component {
   render () {
     return (
       <>
-      <Truck />
+      <Cart />
         <Router>
           <div>
             <Route path='/' exact component={Login} />

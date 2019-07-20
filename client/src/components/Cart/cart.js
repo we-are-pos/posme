@@ -13,10 +13,6 @@ import CashButton from '../CashButton'
  
 const drawerWidth = 240;
 
-const defaultCount = {
-  count: 0
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
@@ -40,14 +36,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const [countState, setCountState] = useState(defaultCount)
-
-// const handleClick = _ => {
-//   setCountState({ count: setCountState + 1 })
-// // }
-
 export default function PermanentDrawerLeft() {
   const classes = useStyles()
+
+  const [count, setCountState] = useState(0)
 
   return (
     <div className={classes.root}>
@@ -80,9 +72,9 @@ export default function PermanentDrawerLeft() {
           alignContent="center"
           css={{ height: 70 }}
           >
-            <Button variant="outlined" size="small">+</Button>
-            <Button variant="outlined" size="small">-</Button>
-            <typography></typography>
+            <Button onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">-</Button>
+            <typography>{count}</typography>
           </Box>
         <Divider />
         <Box

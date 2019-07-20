@@ -39,6 +39,8 @@ const useStyles = makeStyles(theme => ({
 export default function PermanentDrawerLeft() {
   const classes = useStyles()
 
+  const [count, setCountState] = useState(0)
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -70,9 +72,9 @@ export default function PermanentDrawerLeft() {
           alignContent="center"
           css={{ height: 70 }}
           >
-            <Button variant="outlined" size="small">+</Button>
-            <Button variant="outlined" size="small">-</Button>
-            <typography></typography>
+            <Button onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">-</Button>
+            <typography>{count}</typography>
           </Box>
         <Divider />
         <Box
