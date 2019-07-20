@@ -11,7 +11,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import Menu from '@material-ui/icons/MoreHoriz';
+// import Menu from '@material-ui/icons/MoreHoriz';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +66,7 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <Menu  className={classes.menuButton} />  
+          {/* <Menu  className={classes.menuButton} />   */}
 
         </Button>
           </IconButton>
