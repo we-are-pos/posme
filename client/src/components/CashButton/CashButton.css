@@ -1,0 +1,11 @@
+.cashOption {
+  background-color: #41C8E8;
+  color: #FFFFFF;
+  opacity: 100%;
+  font-family: 'Helvetica neue';
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  padding: 6px 6px 6px 6px;
+}
