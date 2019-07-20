@@ -82,7 +82,7 @@ export default function MenuListComposition() {
           <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
           <Button onClick={toggleDrawer('left', true)}>
-      <Menu  className={classes.menuButton} />  
+      {/* <Menu  className={classes.menuButton} />   */}
       </Button>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
