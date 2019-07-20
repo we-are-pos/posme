@@ -34,10 +34,11 @@ title: {
   textAlign: 'center',
 },
 navBar: {
+  width: 994,
   backgroundColor: '#4E5152',
 },
 list: {
-  width:350,
+  width: 350,
   height: 500,
 },
 fullList: {
