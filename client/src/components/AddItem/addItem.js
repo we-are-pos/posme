@@ -32,6 +32,15 @@ export default function FormDialog() {
       >
         <DialogContent>
           <Button variant="outlined" fullWidth="true">
+            {/* <!--   PHOTO--> */}
+            <form
+              action="/upload/photo"
+              enctype="multipart/form-data"
+              method="POST"
+            >
+              <input type="file" name="picture" accept="image/*" />
+              <input type="submit" value="Upload Photo" />
+            </form>
             Open Camera
           </Button>
           <Box
@@ -42,7 +51,7 @@ export default function FormDialog() {
             fullWidth="true"
           >
             {/* <Button variant="outlined">Choose File</Button> */}
-            <input
+            {/* <input
               hidden
               accept="image/*"
               id="contained-button-file"
@@ -53,7 +62,7 @@ export default function FormDialog() {
               <Button variant="outlined" component="span">
                 Choose File
               </Button>
-            </label>
+            </label> */}
           </Box>
 
           <TextField
