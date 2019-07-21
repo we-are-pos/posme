@@ -13,7 +13,7 @@ const Calculator = _ => {
   const getDigit = (event, extraValue) => {
     let newTotal;
     if (extraValue) {
-      setCalcState({ total: event.currentTarget. id })
+      setCalcState({ total: event.currentTarget.id })
     } else {
     setCalcState({
       total: calcState.total 
@@ -52,8 +52,8 @@ const Calculator = _ => {
         <Button variant="contained" color="default" id='10' onClick={(e) => getDigit(e, true)}>$10</Button>
         <Button variant="contained" color="default" id='20' onClick={(e) => getDigit(e, true)}>$20</Button>
         <Button variant="contained" color="default" id='50' onClick={(e) => getDigit(e, true)}>$50</Button>
-        <Button variant="contained" color="default" id='100' onClick={(e) => getDigit(e, true)}>$100</Button>
-        <Button variant="contained" color="secondary" onClick={clear}>Delete</Button>
+        <Button variant="contained" color="primary" onClick={clear}>ENTER</Button>
+        <Button variant="contained" color="secondary" onClick={clear}>DELETE</Button>
       </div>
     </div>
   )
