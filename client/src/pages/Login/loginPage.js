@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
 import Login from '../../components/Login'
-import LoginAxios from '../../utils/Login'
+import axios from 'axios';
 
 class LoginPage extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    isLoggedIn: false
   }
 
   handleLogInUser = event => {
     event.preventDefault()
-    LoginAxios.login()
-    this.setState({})
-    console.log(this.state.username, this.state.password)
+    axios.post('/login')
+      .then(({ data }) => {
+        console.log(data)
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('company', data.company)
+        localStorage.setItem('user', data.user)
+        this.setState({ ...this.state, isLoggedIn: data.isLoggedIn})
+      })
+      .catch(e => console.log(e))
+
   }
 
   handleInputChange = event => {

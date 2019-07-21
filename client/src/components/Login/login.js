@@ -4,7 +4,6 @@ import './login.css'
 import TextField from '@material-ui/core/TextField'
 
 const Login = props => {
-  console.log(props)
   return (
     <>
       <img alt='logo' className='posme' src={PosmeLogo} />
