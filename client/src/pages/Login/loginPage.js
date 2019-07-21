@@ -11,14 +11,20 @@ class LoginPage extends Component {
 
   handleLogInUser = event => {
     event.preventDefault()
-    axios.post('/login')
+    axios.post('/login', {
+      username: this.state.username,
+      password: this.state.password
+    })
       .then(({ data }) => {
-        console.log(data)
+        if (data.isLoggedIn) {
         localStorage.setItem('token', data.token)
         localStorage.setItem('company', data.company)
         localStorage.setItem('user', data.user)
-        this.setState({ ...this.state, isLoggedIn: data.isLoggedIn})
-      })
+        this.setState({ ...this.state, isLoggedIn: data.isLoggedIn })
+      } else {
+
+      }
+    })
       .catch(e => console.log(e))
 
   }

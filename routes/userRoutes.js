@@ -29,10 +29,9 @@ module.exports = app => {
   })
 
   app.post('/login', (req, res) => {
-    User.authenticate()(req.body.username, req.body.password, (e, {user}) => {
+    User.authenticate()(req.body.username, req.body.password, (e, user) => {
       if (e) throw e
       res.json({ isLoggedIn: !!user, user: user.username, company: user.company, token: jwt.sign({ id: user._id }, 'hotdog') })
-      console.log(user)
     })
   })
 }
