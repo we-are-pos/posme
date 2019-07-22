@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Login from '../../components/Login'
-import axios from 'axios';
+import axios from 'axios'
+
 
 class LoginPage extends Component {
   state = {
@@ -17,35 +18,36 @@ class LoginPage extends Component {
     })
       .then(({ data }) => {
         if (data.isLoggedIn) {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('company', data.company)
-        localStorage.setItem('user', data.user)
-        this.setState({ ...this.state, isLoggedIn: data.isLoggedIn })
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('company', data.company)
+          localStorage.setItem('user', data.user)
+          this.setState({ ...this.state, isLoggedIn: data.isLoggedIn })
+          window.location = '/home'
       } else {
-
-      }
+          window.location = '/'
+        }
     })
       .catch(e => console.log(e))
 
   }
 
-  handleInputChange = event => {
-    event.preventDefault()
-    this.setState({
-      [event.target.id]: event.target.value
-    })
-  }
+handleInputChange = event => {
+  event.preventDefault()
+  this.setState({
+    [event.target.id]: event.target.value
+  })
+}
 
-  render() {
-    return (
-      <Login
-        username={this.state.username}
-        password={this.state.password}
-        handleInputChange={e => this.handleInputChange(e)}
-        handleLogInUser={e => this.handleLogInUser(e)}
-      />
-    )
-  }
+render() {
+  return (
+    <Login
+      username={this.state.username}
+      password={this.state.password}
+      handleInputChange={e => this.handleInputChange(e)}
+      handleLogInUser={e => this.handleLogInUser(e)}
+    />
+  )
+}
 }
 
 export default LoginPage
