@@ -22,9 +22,9 @@ class LoginPage extends Component {
           localStorage.setItem('company', data.company)
           localStorage.setItem('user', data.user)
           this.setState({ ...this.state, isLoggedIn: data.isLoggedIn })
-          window.location = '/home'
+          window.location.href = '/home'
       } else {
-          window.location = '/'
+          this.setState({ ...this.state, isLoggedIn: false, username: '', password: '' })
         }
     })
       .catch(e => console.log(e))
