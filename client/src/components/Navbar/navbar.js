@@ -98,7 +98,7 @@ export default function MenuListComposition() {
       })
       .catch(_ => {
         setState({ ...state, isLoggedIn: false, user: '' })
-        window.location.href = '/'
+        window.location.href = '/login'
       })
   }, [])
 
