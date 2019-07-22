@@ -8,6 +8,9 @@ import Grid from "@material-ui/core/Grid"
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false)
+  const [tab, setTab] = React.useState({
+    : 
+  })
 
   function handleClickOpen() {
     setOpen(true)
@@ -32,7 +35,7 @@ export default function FormDialog() {
           id="outlined-name"
           label="Tab Name"
           // className={classes.textField}
-          // value={values.name}
+          value={values.name}
           // onChange={handleChange('name')}
           margin="normal"
           variant="outlined"

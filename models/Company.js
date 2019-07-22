@@ -12,7 +12,7 @@ module.exports = (Schema, model) => {
     }],
     categories: [{
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'Tab'
     }]
   })
 
