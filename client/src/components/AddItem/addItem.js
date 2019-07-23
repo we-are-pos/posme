@@ -9,7 +9,11 @@ import Grid from "@material-ui/core/Grid";
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
+  const [testVal, setTestVal] = React.useState("");
 
+  function handleChange(e) {
+    setTestVal(e.target.value);
+  }
   function handleClickOpen() {
     setOpen(true);
   }
@@ -33,13 +37,11 @@ export default function FormDialog() {
         <DialogContent>
           <Button variant="outlined" fullWidth="true">
             {/* <!--   PHOTO--> */}
-            <form
-              action="/upload/photo"
-              enctype="multipart/form-data"
-              method="POST"
-            >
+            <form action="/item" enctype="multipart/form-data" method="POST">
               <input type="file" name="picture" accept="image/*" />
               <input type="submit" value="Upload Photo" />
+              <input type="text" name="name" value={testVal} />
+              
             </form>
             Open Camera
           </Button>
@@ -81,8 +83,8 @@ export default function FormDialog() {
                 id="outlined-name"
                 label="$0.00"
                 // className={classes.textField}
-                // value={values.name}
-                // onChange={handleChange('name')}
+                value={testVal}
+                onChange={handleChange}
                 margin="normal"
                 variant="outlined"
               />
