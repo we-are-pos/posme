@@ -16,7 +16,7 @@ module.exports = app => {
     app.post('/tab', (req, res) => {
         Tab.create(req.body)
             .then(({ _id, company }) => {
-                Company.updateOne({ _id: company }, { $push: { categories: _id } })
+                Company.updateOne({ _id: company }, { $push: { tabs: _id } })
                     .then(res.sendStatus(200))
                     .catch(e => console.log(e))
             })
