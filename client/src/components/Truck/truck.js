@@ -7,10 +7,8 @@ import { typography } from "@material-ui/system";
 import Button from "@material-ui/core/Button"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
-import CardButton from '../CardButton'
-import CashButton from '../CashButton'
 import Truck from '../../assets/truck.png'
- 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -26,14 +24,19 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: 372,
   },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3)
-  }
+  },
+  orderButton: {
+    width: 341.48,
+    height: 80,
+    color: '#41C8E8'
+  },
 }));
 
 export default function PermanentDrawerLeft() {
@@ -87,12 +90,11 @@ export default function PermanentDrawerLeft() {
         css={{ height: 800 }}
         >
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-          <CardButton />
+          <Grid item xs={12}>
+          <Button className={classes.orderButton} variant="outlined" color="primary">
+          Order
+          </Button>
           </Grid>
-          <Grid item xs={6}>
-          <CashButton />
-          </Grid >
         </Grid>
         </Box>
       </Drawer>

@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../../components/Navbar'
 import AddTab from '../../components/AddTab'
 import AddItem from '../../components/AddItem'
+import Truck from '../../components/Truck'
 
 
 class Inventory extends React.Component {
@@ -11,6 +12,7 @@ class Inventory extends React.Component {
       <NavBar />
       <AddTab />
       <AddItem />
+      <Truck />
       </div>
     )
   }

@@ -2,12 +2,17 @@ import React from 'react'
 import PosmeLogo from './images/POSME.png'
 import './login.css'
 import TextField from '@material-ui/core/TextField'
+import Grid from "@material-ui/core/Grid"
 
 const Login = props => {
   return (
-    <>
+    <>       
+    
       <img alt='logo' className='posme' src={PosmeLogo} />
       <h4 className='meaning'>Point Of Sale Made Easy</h4>
+      
+      <Grid container spacing={0}>
+      <Grid item xs={12}>
       <form className='form-input' >
         <TextField
           id='username'
@@ -20,6 +25,7 @@ const Login = props => {
           onChange={props.handleInputChange}
           value={props.username}
         />
+  
         <TextField
           id='password'
           label='Password'
@@ -42,6 +48,9 @@ const Login = props => {
           </button>
         </div>
       </form>
+      </Grid>
+      </Grid>
+
     </>
   )
 }
