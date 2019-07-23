@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
 import Dialog from "@material-ui/core/Dialog"
@@ -9,8 +9,8 @@ import Grid from "@material-ui/core/Grid"
 
 
 export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
-  const [testVal, setTestVal] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [testVal, setTestVal] = useState("");
 
   function handleChange(e) {
     setTestVal(e.target.value);
