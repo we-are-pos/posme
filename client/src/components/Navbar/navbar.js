@@ -1,5 +1,6 @@
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import React, { useEffect } from 'react'
@@ -9,6 +10,7 @@ import Menu from '@material-ui/icons/MoreHoriz'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import Divider from '@material-ui/core/Divider'
 import ListItemText from '@material-ui/core/ListItemText'
 import axios from 'axios'
 
@@ -71,13 +73,21 @@ export default function MenuListComposition() {
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
-    >
+    > 
       <List>
-        {['Home', 'Inventory', 'Sales', 'Sign Out'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
+        {['Home', 'Inventory', 'Sales'].map((text, index) => (
+          <Link to={`/${text.toLowerCase()}`}>
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          </Link>
         ))}
+        <Divider />
+        <Link to={`/signout`}>
+            <ListItem button key={"signout"}>
+              <ListItemText primary="Sign Out" />
+            </ListItem>
+          </Link>
       </List>
 
     </div>
