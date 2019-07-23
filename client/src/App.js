@@ -16,11 +16,11 @@ class App extends Component {
       {/* <Cart /> */}
         <Router>
           <div>
-            <Route path='/' exact component={Login} />
+            <Route path='/login' component={Login} />
             <Route path='/inventory' component={Inventory} />
             <Route path='/thankyou' component={ThankYouPage} />
             <Route path='/sales' component={Sales} />
-            <Route path='/home' component={Home} />
+            <Route path='/' exact component={Home} />
           </div>
         </Router>
       </>
