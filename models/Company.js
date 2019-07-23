@@ -10,9 +10,9 @@ module.exports = (Schema, model) => {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    categories: [{
+    tabs: [{
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'Tab'
     }]
   })
 

@@ -1,4 +1,4 @@
-const { Item, Category } = require('../models')
+const { Item, Tab } = require('../models')
 
 module.exports = app => {
     app.get('/item', (req, res) => {
@@ -8,14 +8,14 @@ module.exports = app => {
     })
     app.get('/item/:_id', (req, res) => {
         Item.findById(req.params._id)
-            .populate('category')
+            .populate('tab')
             .then(item => res.json(item))
             .catch(e => console.log(e))
     })
     app.post('/item', (req, res) => {
         Item.create(req.body)
-            .then(({ _id, category }) => {
-                Category.updateOne({ _id: category }, { $push: { items: _id } })
+            .then(({ _id, tab }) => {
+                Tab.updateOne({ _id: tab }, { $push: { items: _id } })
                     .then(res.sendStatus(200))
                     .catch(e => res.json(e))
             })

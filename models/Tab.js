@@ -1,5 +1,5 @@
 module.exports = (Schema, model) => {
-  const Category = new Schema({
+  const Tab = new Schema({
     name: String,
     company: {
       type: Schema.Types.ObjectId,
@@ -11,5 +11,5 @@ module.exports = (Schema, model) => {
     }]
   })
 
-  return model('Category', Category)
+  return model('Tab', Tab)
 }

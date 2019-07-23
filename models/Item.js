@@ -11,9 +11,9 @@ module.exports = (Schema, model) => {
       data: Buffer,
       contentType: String
     },
-    category: {
+    tab: {
       type: Schema.Types.ObjectId,
-      ref: 'Category'
+      ref: 'Tab'
     },
 
 
