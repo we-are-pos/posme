@@ -12,6 +12,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Divider from '@material-ui/core/Divider'
 import ListItemText from '@material-ui/core/ListItemText'
+import './NavBar.css'
 import axios from 'axios'
 
 
@@ -35,17 +36,19 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     textAlign: 'center',
+    fontSize: '28px',
   },
   navBar: {
-    width: 994,
     backgroundColor: '#4E5152',
   },
   list: {
     width: 350,
-    height: 500,
+    height: '100%',
+    backgroundColor: '#4E5152',
   },
   fullList: {
     width: 'auto',
+    backgroundColor: '#4E5152',
   },
 
 }));
@@ -76,16 +79,15 @@ export default function MenuListComposition() {
     > 
       <List>
         {['Home', 'Inventory', 'Sales'].map((text, index) => (
-          <Link to={`/${text.toLowerCase()}`}>
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
+          <Link className='linkText' to={`/${text.toLowerCase()}`}>
+            <ListItem  button key={text}>
+              <ListItemText style={{ paddingTop: '16px'}} className='linkButton' primary={text} />
             </ListItem>
           </Link>
         ))}
-        <Divider />
-        <Link to={`/signout`}>
+        <Link className='linkText' to={`/signout`}>
             <ListItem button key={"signout"}>
-              <ListItemText primary="Sign Out" />
+              <ListItemText style={{ paddingTop: '16px'}} className='linkButton' primary="Sign Out" />
             </ListItem>
           </Link>
       </List>
