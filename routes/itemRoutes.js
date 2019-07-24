@@ -26,12 +26,12 @@ module.exports = app => {
       .then(item => res.json(item))
       .catch(e => console.log(e));
   });
-  app.post("/item", upload.single("picture"), (req, res) => { 
+  app.post("/item", upload.single("picture"), (req, res) => {
     // multer attaches image url to req.file.filename
-    req.body.img = `/${req.file.filename}`
+    req.body.img = `/${req.file.filename}`;
     Item.create(req.body)
       .then(({ _id, category }) => {
-        Category.updateOne({ _id: category }, { $push: { items: _id } })
+        Tab.updateOne({ _id: category }, { $push: { items: _id } })
           .then(res.sendStatus(200))
           .catch(e => res.json(e));
       })
