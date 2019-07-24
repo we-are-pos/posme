@@ -9,16 +9,23 @@ import axios from 'axios'
 
 class Inventory extends Component {
   state = {
-    _id: '',
-    label: '',
-    tabs: []
+    tabs: [],
+    items: []
   }
 
   handleGetTabs = _ => {
     axios.get(`/tab/${localStorage.getItem('company')}`)
       .then(({ data }) => {
-        this.setState({ ...this.state, tabs: data }) 
-        console.log(this.state.tabs)
+        this.setState({ ...this.state, tabs: data })
+      })
+      .catch(e => console.log(e))
+  }
+
+  handleGetItems = _ => {
+    axios.get('/item')
+      .then(({ data }) => {
+        this.setState({ ...this.state, items: data })
+        console.log(this.state.items)
       })
       .catch(e => console.log(e))
   }
@@ -32,6 +39,7 @@ class Inventory extends Component {
         <AddTab />
         <CenteredTabs
           tabs={this.state.tabs}
+          handleGetItems={this.handleGetItems}
           handleGetTabs={this.handleGetTabs}
         />
         <AddItem />
@@ -39,7 +47,10 @@ class Inventory extends Component {
         {/* {items.map(itemObj =>  {
         return <ImgMediaCard title={itemObj.title} />  
       })} */}
-        <ImgMediaCard title='lolololol' />
+        <ImgMediaCard
+          items={this.state.items}
+          tabs={this.state.tabs}
+          handleGetItems={this.handleGetItems} />
       </div>
     )
   }

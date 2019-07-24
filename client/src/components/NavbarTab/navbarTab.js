@@ -15,6 +15,15 @@ export default function CenteredTabs(props) {
     // console.log(props)
     const classes = useStyles();
     const [value, setValue] = useState(0);
+    const [item, setItem] = useState({
+        item: ''
+    })
+
+    // props.tabs.map(tabs => {
+    //    return console.log(tabs.items)
+    // })
+    
+
     useEffect(() => {
         props.handleGetTabs({})
     },[])
@@ -22,7 +31,7 @@ export default function CenteredTabs(props) {
     function handleChange(event, newValue) {
         setValue(newValue);
     }
-console.log(props.tabs)
+
     return (
         <Paper className={classes.root}>
             <Tabs
