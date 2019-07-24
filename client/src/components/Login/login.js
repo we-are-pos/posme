@@ -1,5 +1,5 @@
 import React from 'react'
-import PosmeLogo from './images/POSME.png'
+import PosmeLogo from './images/PosmeLogo.png'
 import './login.css'
 import TextField from '@material-ui/core/TextField'
 import Grid from "@material-ui/core/Grid"
@@ -9,7 +9,7 @@ const Login = props => {
     <>       
     
       <img alt='logo' className='posme' src={PosmeLogo} />
-      <h4 className='meaning'>Point Of Sale Made Easy</h4>
+      {/* <h4 className='meaning'>Point Of Sale Made Easy</h4> */}
       
       <Grid container spacing={0}>
       <Grid item xs={12}>
@@ -50,7 +50,6 @@ const Login = props => {
       </form>
       </Grid>
       </Grid>
-
     </>
   )
 }

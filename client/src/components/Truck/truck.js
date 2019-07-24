@@ -1,3 +1,5 @@
+
+import Truck from '../../assets/truck.png'
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -7,7 +9,17 @@ import { typography } from "@material-ui/system";
 import Button from "@material-ui/core/Button"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
-import Truck from '../../assets/truck.png'
+import Calculator from '../Calculator'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const drawerWidth = 240;
 
@@ -32,10 +44,35 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3)
   },
-  orderButton: {
+  paymentButton: {
     width: 341.48,
     height: 80,
+    backgroundColor: '#41C8E8',
+    color: 'white',
+    border: 'none',
+    fontSize: 22,
+  },
+  plusButton: {
+    marginLeft: 20,
+    color: '#41C8E8',
+    // padding: 4,
+  },
+  minusButton: {
+    marginLeft: 40,
+    // padding: 4,
     color: '#41C8E8'
+  },
+  countDisplay: {
+    marginLeft: 120,
+    // padding: 4,
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'regular',
+  },
+  productName: {
+    marginLeft: 20,
+    marginTop: 10,
+    fontSize: 16,
   },
 }));
 
@@ -43,6 +80,16 @@ export default function PermanentDrawerLeft() {
   const classes = useStyles()
 
   const [count, setCountState] = useState(0)
+  const [open, setOpen] = React.useState(false);
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
 
   return (
     <div className={classes.root}>
@@ -65,19 +112,19 @@ export default function PermanentDrawerLeft() {
         borderColor="grey.300"
         css={{ height: 70}}
         >
-          <img alt='truck' src={Truck} />
+          <img alt='bag' src={Truck} />
         </Box>
         <Divider />
-        <typography>Product Name</typography>
+        <typography className={classes.productName} >Product Name</typography>
           <Box
           display="flex"
           flexWrap="wrap"
           alignContent="center"
           css={{ height: 70 }}
           >
-            <Button onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
-            <Button onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">-</Button>
-            <typography>{count}</typography>
+            <Button className={classes.plusButton} onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
+            <typography className={classes.countDisplay}>{count}</typography>
           </Box>
         <Divider />
         <Box
@@ -90,11 +137,28 @@ export default function PermanentDrawerLeft() {
         css={{ height: 800 }}
         >
         <Grid container spacing={2}>
+          
           <Grid item xs={12}>
-          <Button className={classes.orderButton} variant="outlined" color="primary">
-          Order
+          <Button className={classes.paymentButton} variant="outlined" color="primary">
+          ORDER
           </Button>
-          </Grid>
+          {/* <CashButton onClick={handleClickOpen} /> */}
+          <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+        <Calculator />
+
+        </DialogContent>
+        
+      </Dialog>
+          </Grid >
         </Grid>
         </Box>
       </Drawer>

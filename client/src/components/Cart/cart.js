@@ -49,7 +49,35 @@ const useStyles = makeStyles(theme => ({
   paymentButton: {
     width: 158,
     height: 80,
-    color: '#41C8E8'
+    backgroundColor: '#41C8E8',
+    color: 'white',
+    border: 'none',
+    fontSize: 22,
+  },
+  plusButton: {
+    marginLeft: 20,
+    fontSize: 20,
+    color: '#41C8E8',
+    height: 50,
+  },
+  minusButton: {
+    marginLeft: 40,
+    fontSize: 20,
+    color: '#41C8E8',
+    height: 50,
+
+  },
+  countDisplay: {
+    marginLeft: 120,
+    // padding: 4,
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'regular',
+  },
+  productName: {
+    marginLeft: 20,
+    marginTop: 10,
+    fontSize: 16,
   },
 }));
 
@@ -92,16 +120,16 @@ export default function PermanentDrawerLeft() {
           <img alt='bag' src={ShoppingBag} />
         </Box>
         <Divider />
-        <typography>Product Name</typography>
+        <typography className={classes.productName} >Product Name</typography>
           <Box
           display="flex"
           flexWrap="wrap"
           alignContent="center"
           css={{ height: 70 }}
           >
-            <Button onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
-            <Button onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">-</Button>
-            <typography>{count}</typography>
+            <Button className={classes.plusButton} onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
+            <typography className={classes.countDisplay}>{count}</typography>
           </Box>
         <Divider />
         <Box
