@@ -1,0 +1,12 @@
+.linkButton {
+    color: rgb(40, 42, 43);
+    background-color: rgb(239, 239, 241);
+    height: 60px;
+    text-align: center;
+    font-size: 18px;
+}
+.linkText {
+    font-size: 10px;
+    text-decoration: none;
+
+}
