@@ -1,6 +1,6 @@
 const multer = require("multer");
 const fs = require("fs");
-const { Item, Category } = require("../models");
+const { Item, Tab } = require("../models");
 
 module.exports = app => {
   // SET STORAGE
@@ -22,7 +22,7 @@ module.exports = app => {
   });
   app.get("/item/:_id", (req, res) => {
     Item.findById(req.params._id)
-      .populate("category")
+      .populate("tab")
       .then(item => res.json(item))
       .catch(e => console.log(e));
   });
@@ -30,8 +30,8 @@ module.exports = app => {
     // multer attaches image url to req.file.filename
     req.body.img = `/${req.file.filename}`;
     Item.create(req.body)
-      .then(({ _id, category }) => {
-        Tab.updateOne({ _id: category }, { $push: { items: _id } })
+      .then(({ _id, tab }) => {
+        Tab.updateOne({ _id: tab }, { $push: { items: _id } })
           .then(res.sendStatus(200))
           .catch(e => res.json(e));
       })
