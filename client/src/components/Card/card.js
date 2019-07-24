@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function ImgMediaCard () {
+export default function ImgMediaCard(props) {
   const classes = useStyles()
 
   return (
@@ -29,12 +29,13 @@ export default function ImgMediaCard () {
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
             {/* insert succulent here */}
+
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Typography>
-          {/* insert succulent price here */}
+          {props.title}
         </Typography>
         <Typography>
           {/* insert succulent quantity here */}
