@@ -28,7 +28,7 @@ export default function FormDialog() {
       name: tab.tab,
       company: tab.company
     })
-    .then(r => console.log(r))
+    .then(window.location.href = '/inventory')
     .catch(e => console.log(e))
     setOpen(false)
   }

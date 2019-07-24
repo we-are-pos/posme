@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -13,33 +13,47 @@ const useStyles = makeStyles({
   }
 })
 
-export default function ImgMediaCard () {
+
+export default function ImgMediaCard(props) {
   const classes = useStyles()
+  // console.log(props.item)
+  // props.tabs.map(tabs => {
+  //   tabs.tabs.map(tabs => {
+  //     return console.log(tabs.name)
+  //   })
+  //   return (tabs.tabs)
+  // })
+  useEffect(() => {
+    props.handleGetItems({})
+  }, [])
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component='img'
-          alt=""
-          height="140"
-          image=""
-          title=""
-        />
-        <CardContent>
-          <Typography gutterBottom variant='h5' component='h2'>
-            {/* insert succulent here */}
+    props.items.map(items => {
+      return <Card id={items._id} className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            component='img'
+            alt={items._id}
+            height="140"
+            image={items.img}
+            title=""
+          />
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='h2'>
+              {/* { insert succulent here} */}
+              {items.name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Typography>
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Typography>
-          {/* insert succulent price here */}
-        </Typography>
-        <Typography>
-          {/* insert succulent quantity here */}
-        </Typography>
-      </CardActions>
-    </Card>
+          <Typography>
+            {/* { insert succulent quantity here } */}
+            {items.inventory}
+          </Typography>
+        </CardActions>
+      </Card>
+    })
   )
 }
