@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import PhotoUpload from "../PhotoUpload";
+import { uploadPhoto } from "../../s3";
 
 class FormDialog extends React.Component {
   state = {
@@ -39,6 +40,9 @@ class FormDialog extends React.Component {
   };
   handleDescription = event => {
     this.setState({ desc: event.target.value });
+  };
+  uploadPhoto = files => {
+    uploadPhoto(files);
   };
   handleSubmit = event => {
     console.log("submit button working");
@@ -77,17 +81,7 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <form action="/item" encType="multipart/form-data" method="POST">
-            <input
-              type="file"
-              onChange={this.addPhoto}
-              accept="image/*"
-              value={this.state.img}
-            />
-            <input type="submit" value="Upload Photo" />
-            <form action="/item" method="POST" />
-          </form>
-
+          <PhotoUpload handleSave={this.uploadPhoto} />
           <DialogContent>
             Open Camera
             <TextField
