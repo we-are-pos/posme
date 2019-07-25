@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
@@ -35,7 +36,7 @@ app.use(express.static(join(__dirname, 'client', 'build')))
 
 routes(app)
 
-require('mongoose').connect('mongodb://localhost/posme_db', {
+require('mongoose').connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: true
