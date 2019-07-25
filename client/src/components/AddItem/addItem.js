@@ -77,17 +77,17 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          {/* <form action="/item" encType="multipart/form-data" method="POST">
+          <form action="/item" encType="multipart/form-data" method="POST">
             <input
               type="file"
               onChange={this.addPhoto}
               accept="image/*"
               value={this.state.img}
-            /> */}
-          {/* <input type="submit" value="Upload Photo" /> */}
-          {/* <form action="/item" method="POST"> */}
-          <PhotoUpload />
-          {/* </form> */}
+            />
+          <input type="submit" value="Upload Photo" />
+          <form action="/item" method="POST" />
+          {/* <PhotoUpload /> */}
+          </form>
 
           <DialogContent>
             Open Camera
