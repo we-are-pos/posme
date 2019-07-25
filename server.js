@@ -45,6 +45,7 @@ app.use(express.static(join(__dirname, "client", "build")));
 app.use(express.static(join(__dirname, "uploads")));
 
 routes(app);
+app.get('*', (req, res) => res.sendFile(join(__dirname, 'client', 'build', 'index.html')))
 
 require("mongoose")
   .connect(process.env.MONGODB_URI, {
