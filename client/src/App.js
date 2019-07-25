@@ -13,10 +13,10 @@ class App extends Component {
   render() {
     return (
       <>
-      <Cart />
+      {/* <Cart /> */}
         <Router>
           <div>
-            <Route path="/login" component={Inventory} />
+            <Route path="/login" component={Login} />
             <Route path="/inventory" component={Inventory} />
             <Route path="/thankyou" component={ThankYouPage} />
             <Route path="/sales" component={Sales} />

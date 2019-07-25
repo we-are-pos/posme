@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import { typography } from "@material-ui/system";
+import React, { useState } from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import Divider from "@material-ui/core/Divider"
+import { typography } from "@material-ui/system"
 import Button from "@material-ui/core/Button"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
@@ -12,14 +12,12 @@ import CardButton from '../CardButton'
 import Calculator from '../Calculator'
 import SwipeableList from '../SwipeableList'
 import SwipeableListItem from '../SwipeableList/SwipeableListItem.js'
- 
-
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Slide from '@material-ui/core/Slide'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
