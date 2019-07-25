@@ -29,12 +29,14 @@ module.exports = app => {
 
   app.post("/item", upload.single("img"), (req, res) => {
     let name = req.body.name;
+    let desc = req.body.desc;
     let price = req.body.price;
     let inventory = req.body.inventory;
     console.log(name);
+    console.log(desc);
     console.log(price);
     console.log(inventory);
-    Item.create({ name, price, inventory })
+    Item.create({ name, desc, price, inventory })
       .then(response => console.log(response))
       .catch(err => console.log(err));
   });

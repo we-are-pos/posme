@@ -43,18 +43,19 @@ class FormDialog extends React.Component {
   handleSubmit = event => {
     console.log("submit button working");
     event.preventDefault();
-    const { name, price, inventory } = this.state;
+    const { name, desc, price, inventory } = this.state;
     console.log(
       `name is ${this.state.name} and price is ${
         this.state.price
-      } and inventory is ${this.state.inventory}`
+      } and desc is ${this.state.desc} and inventory is ${this.state.inventory}`
     );
     axios
-      .post("/item", { name, price, inventory })
+      .post("/item", { name, desc, price, inventory })
       .then(res => console.log(res))
       .catch(err => console.log(err));
     this.setState({
       name: "",
+      desc: "",
       price: "",
       inventory: ""
     });
@@ -90,18 +91,27 @@ class FormDialog extends React.Component {
 
           <DialogContent>
             Open Camera
-            <Box
-              borderColor="grey.400"
-              m={1}
-              border={1}
-              style={{ height: "10rem" }}
-              fullWidth="true"
-            />
             <TextField
               id="outlined-name"
               label="Product Name"
               value={this.state.name}
               onChange={this.handleName}
+              margin="normal"
+              variant="outlined"
+              fullWidth="true"
+            />
+            {/* <Box
+              borderColor="grey.400"
+              m={1}
+              border={1}
+              style={{ height: "10rem" }}
+              fullWidth="true"
+            /> */}
+            <TextField
+              id="outlined-name"
+              label="Description"
+              value={this.state.desc}
+              onChange={this.handleDescription}
               margin="normal"
               variant="outlined"
               fullWidth="true"
