@@ -44,6 +44,7 @@ export default function ItemCardList(props) {
           </Typography>
           <Typography>
             {/* { insert succulent quantity here } */}
+            {items.price}
             {items.inventory}
           </Typography>
         </CardActions>
