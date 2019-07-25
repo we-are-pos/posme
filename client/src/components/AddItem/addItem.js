@@ -84,9 +84,8 @@ class FormDialog extends React.Component {
               accept="image/*"
               value={this.state.img}
             />
-          <input type="submit" value="Upload Photo" />
-          <form action="/item" method="POST" />
-          {/* <PhotoUpload /> */}
+            <input type="submit" value="Upload Photo" />
+            <form action="/item" method="POST" />
           </form>
 
           <DialogContent>
@@ -138,7 +137,6 @@ class FormDialog extends React.Component {
                 />
               </Grid>
             </Grid>
-            {/* </form> */}
           </DialogContent>
 
           <DialogActions>
@@ -166,7 +164,6 @@ class FormDialog extends React.Component {
               </Grid>
             </Grid>
           </DialogActions>
-          {/* </form> */}
         </Dialog>
       </div>
     );

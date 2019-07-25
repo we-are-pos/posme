@@ -1,15 +1,14 @@
-require('dotenv').config()
-const express = require('express')
-const passport = require('passport')
-const { Strategy } = require('passport-local')
-const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
-const { User } = require('./models')
-const { join } = require('path')
-const PORT = process.env.PORT || 3001
-const app = express()
-const routes = require('./routes')
-const multer = require('multer')
-const secret = process.env.SECRET
+require("dotenv").config();
+const express = require("express");
+const passport = require("passport");
+const { Strategy } = require("passport-local");
+const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
+const { User } = require("./models");
+const { join } = require("path");
+const PORT = process.env.PORT || 3001;
+const app = express();
+const routes = require("./routes");
+const secret = process.env.SECRET;
 const fs = require("fs");
 const bodyParser = require("body-parser");
 
@@ -59,11 +58,4 @@ require("mongoose")
   })
   .catch(e => console.log(e));
 
-// app.use(multer({ dest: './uploads',
-//   rename: function (fieldname, filename) {
-//     return filename
-//   }
-// })
-// )
-
-console.log('hi')
+console.log("hi");
