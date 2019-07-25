@@ -10,23 +10,23 @@ import ThankYouPage from './components/ThankYou'
 import SwipeableListItem from './components/SwipeableList/SwipeableListItem'
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <>
-      <Cart />
+      {/* <Cart /> */}
         <Router>
           <div>
-            <Route path='/login' component={Login} />
-            <Route path='/inventory' component={Inventory} />
-            <Route path='/thankyou' component={ThankYouPage} />
-            <Route path='/sales' component={Sales} />
-            <Route path='/home' component={Home} />
-            <Route exact path='/' component={Home} />
+            <Route path="/login" component={Inventory} />
+            <Route path="/inventory" component={Inventory} />
+            <Route path="/thankyou" component={ThankYouPage} />
+            <Route path="/sales" component={Sales} />
+            <Route path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
           </div>
         </Router>
       </>
-    )
+    );
   }
 }
 
-export default App
+export default App;
