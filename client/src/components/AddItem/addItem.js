@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,6 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import PhotoUpload from "../PhotoUpload";
 
 class FormDialog extends React.Component {
   state = {
@@ -15,7 +16,11 @@ class FormDialog extends React.Component {
     name: "",
     inventory: "",
     desc: "",
-    submit: ""
+    submit: "",
+    img: ""
+  };
+  addPhoto = event => {
+    this.setState({ img: event.target.value });
   };
   handleClickOpen = _ => {
     this.setState({ open: true });
@@ -71,34 +76,37 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <form
-            onSubmit={this.handleSubmit}
-            action="/item"
-            enctype="multipart/form-data"
-            method="POST"
-          >
-            <input type="file" name="picture" accept="image/*" />
-            <input type="submit" value="Upload Photo" />
+          {/* <form action="/item" encType="multipart/form-data" method="POST">
+            <input
+              type="file"
+              onChange={this.addPhoto}
+              accept="image/*"
+              value={this.state.img}
+            /> */}
+          {/* <input type="submit" value="Upload Photo" /> */}
+          <form action="/item" method="POST">
+            <PhotoUpload />
+          </form>
 
-            <DialogContent>
-              {/* <Button variant="outlined" fullWidth="true"> */}
-              {/* <!--   PHOTO--> */}
-              {/* <form action="/item" enctype="multipart/form-data" method="POST">
+          <DialogContent>
+            {/* <Button variant="outlined" fullWidth="true"> */}
+            {/* <!--   PHOTO--> */}
+            {/* <form action="/item" enctype="multipart/form-data" method="POST">
               <input type="file" name="picture" accept="image/*" />
               <input type="submit" value="Upload Photo" /> */}
-              {/* <input type="text" name="name" value={testVal} /> */}
-              {/* </form> */}
-              Open Camera
-              {/* </Button> */}
-              <Box
-                borderColor="grey.400"
-                m={1}
-                border={1}
-                style={{ height: "10rem" }}
-                fullWidth="true"
-              >
-                {/* <Button variant="outlined">Choose File</Button> */}
-                {/* <input
+            {/* <input type="text" name="name" value={testVal} /> */}
+            {/* </form> */}
+            Open Camera
+            {/* </Button> */}
+            <Box
+              borderColor="grey.400"
+              m={1}
+              border={1}
+              style={{ height: "10rem" }}
+              fullWidth="true"
+            >
+              {/* <Button variant="outlined">Choose File</Button> */}
+              {/* <input
               hidden
               accept="image/*"
               id="contained-button-file"
@@ -110,73 +118,70 @@ class FormDialog extends React.Component {
                 Choose File
               </Button>
             </label> */}
-              </Box>
-              <TextField
-                id="outlined-name"
-                label="Product Name"
-                // className={classes.textField}
-                value={this.state.name}
-                onChange={this.handleName}
-                margin="normal"
-                variant="outlined"
-                fullWidth="true"
-              />
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <TextField
-                    id="outlined-name"
-                    label="$0.00"
-                    // className={classes.textField}
-                    value={this.state.price}
-                    onChange={this.handlePrice}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    id="outlined-name"
-                    label="QTY"
-                    // className={classes.textField}
-                    value={this.state.inventory}
-                    onChange={this.handleInventory}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </Grid>
+            </Box>
+            <TextField
+              id="outlined-name"
+              label="Product Name"
+              // className={classes.textField}
+              value={this.state.name}
+              onChange={this.handleName}
+              margin="normal"
+              variant="outlined"
+              fullWidth="true"
+            />
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  id="outlined-name"
+                  label="$0.00"
+                  // className={classes.textField}
+                  value={this.state.price}
+                  onChange={this.handlePrice}
+                  margin="normal"
+                  variant="outlined"
+                />
               </Grid>
-              {/* </form> */}
-            </DialogContent>
+              <Grid item xs={6}>
+                <TextField
+                  id="outlined-name"
+                  label="QTY"
+                  // className={classes.textField}
+                  value={this.state.inventory}
+                  onChange={this.handleInventory}
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+            {/* </form> */}
+          </DialogContent>
 
-            <DialogActions>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Button
-                    type="submit"
-                    // onClick={handleClose}
-                    // value={submit}
-                    // onChange={handleSubmit}
-                    // onClick={this.handleSubmit}
-                    // fullWidth="true"
-                    variant="contained"
-                    color="primary"
-                  >
-                    Add Item
-                  </Button>
-                </Grid>
-                <Grid item xs={6}>
-                  <Button
-                    onClick={this.handleClose}
-                    // fullWidth="true"
-                    variant="contained"
-                    color="secondary"
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
+          <DialogActions>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Button
+                  // onClick={handleClose}
+                  onClick={this.handleSubmit}
+                  // fullWidth="true"
+                  variant="contained"
+                  color="primary"
+                >
+                  Add Item
+                </Button>
               </Grid>
-            </DialogActions>
-          </form>
+              <Grid item xs={6}>
+                <Button
+                  onClick={this.handleClose}
+                  // fullWidth="true"
+                  variant="contained"
+                  color="secondary"
+                >
+                  Cancel
+                </Button>
+              </Grid>
+            </Grid>
+          </DialogActions>
+          {/* </form> */}
         </Dialog>
       </div>
     );
