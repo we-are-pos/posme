@@ -41,8 +41,9 @@ class FormDialog extends React.Component {
   handleDescription = event => {
     this.setState({ desc: event.target.value });
   };
-  uploadPhoto = files => {
-    uploadPhoto(files);
+  addPhoto = files => {
+    // console.log("hello", uploadPhoto(files));
+    console.log("hello", files[0]);
   };
   handleSubmit = event => {
     console.log("submit button working");
@@ -81,7 +82,7 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <PhotoUpload handleSave={this.uploadPhoto} />
+          <PhotoUpload handleSave={this.addPhoto} />
           <DialogContent>
             Open Camera
             <TextField

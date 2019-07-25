@@ -4,11 +4,11 @@ import S3FileUpload from "react-s3";
 import { uploadFile } from "react-s3";
 
 const config = {
-  bucketName: "posme",
+  bucketName: S3_BUCKET_NAME,
   dirName: "photos" /* optional */,
   region: "us-west-1",
-  accessKeyId: "AKIAYLM5PHY6APZYQQEF",
-  secretAccessKey: "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"
+  accessKeyId: AWS_ACCESS_KEY_ID,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY
 };
 
 /*  Notice that if you don't provide a dirName, the file will be automatically uploaded to the root of your bucket */
