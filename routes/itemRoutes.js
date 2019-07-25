@@ -16,7 +16,7 @@ module.exports = app => {
   var upload = multer({ storage: storage });
 
   app.get("/item", (req, res) => {
-    Item.find({})
+    Item.find({where: req.body.tabs})
       .then(item => res.json(item))
       .catch(e => console.log(e));
   });
@@ -28,7 +28,7 @@ module.exports = app => {
   });
   app.post("/item", upload.single("picture"), (req, res) => { 
     // multer attaches image url to req.file.filename
-    req.body.img = `/${req.file.filename}`
+    // req.body.img = `/${req.file.filename}`
     Item.create(req.body)
       .then(({ _id, tab }) => {
         Tab.updateOne({ _id: tab }, { $push: { items: _id } })

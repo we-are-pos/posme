@@ -3,33 +3,28 @@ import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import ItemCardList from '../Card'
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
     },
-});
+})
 
 
 export default function CenteredTabs(props) {
-    // console.log(props)
-    const classes = useStyles();
-    const [value, setValue] = useState(0);
-    const [item, setItem] = useState({
-        item: ''
-    })
+    const classes = useStyles()
+    const [value, setValue] = useState(0)
+    const [tabId, setTabId] = useState(0)
 
-    // props.tabs.map(tabs => {
-    //    return console.log(tabs.items)
-    // })
-    
 
     useEffect(() => {
         props.handleGetTabs({})
-    },[])
+    }, [])
 
     function handleChange(event, newValue) {
-        setValue(newValue);
+        setTabId(event.currentTarget.id)
+        setValue(newValue)
     }
 
     return (
@@ -41,10 +36,16 @@ export default function CenteredTabs(props) {
                 indicatorColor="primary"
                 textColor="primary"
             >
-                {props.tabs.map(tabs => {
+                {props.tabs.map((tabs, i) => {
                     return <Tab id={tabs._id} label={tabs.name} />
                 })}
             </Tabs>
+            {
+                <ItemCardList
+                    items={props.items.filter(x => x.tab === tabId)}
+                    tabs={props.tabs}
+                    handleGetTabs={props.handleGetTabs}
+                />}
         </Paper>
     );
 }
