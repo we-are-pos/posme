@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const fs = require("fs");
 const passport = require("passport");
@@ -45,7 +46,7 @@ app.use(express.static(join(__dirname, "uploads")));
 routes(app);
 
 require("mongoose")
-  .connect("mongodb://localhost/posme_db", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: true
@@ -63,3 +64,5 @@ require("mongoose")
 //   }
 // })
 // )
+
+console.log('hi')
