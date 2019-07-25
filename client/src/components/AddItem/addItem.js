@@ -84,45 +84,22 @@ class FormDialog extends React.Component {
               value={this.state.img}
             /> */}
           {/* <input type="submit" value="Upload Photo" /> */}
-          <form action="/item" method="POST">
-            <PhotoUpload />
-          </form>
+          {/* <form action="/item" method="POST"> */}
+          <PhotoUpload />
+          {/* </form> */}
 
           <DialogContent>
-            {/* <Button variant="outlined" fullWidth="true"> */}
-            {/* <!--   PHOTO--> */}
-            {/* <form action="/item" enctype="multipart/form-data" method="POST">
-              <input type="file" name="picture" accept="image/*" />
-              <input type="submit" value="Upload Photo" /> */}
-            {/* <input type="text" name="name" value={testVal} /> */}
-            {/* </form> */}
             Open Camera
-            {/* </Button> */}
             <Box
               borderColor="grey.400"
               m={1}
               border={1}
               style={{ height: "10rem" }}
               fullWidth="true"
-            >
-              {/* <Button variant="outlined">Choose File</Button> */}
-              {/* <input
-              hidden
-              accept="image/*"
-              id="contained-button-file"
-              multiple
-              type="file"
             />
-            <label htmlFor="contained-button-file">
-              <Button variant="outlined" component="span">
-                Choose File
-              </Button>
-            </label> */}
-            </Box>
             <TextField
               id="outlined-name"
               label="Product Name"
-              // className={classes.textField}
               value={this.state.name}
               onChange={this.handleName}
               margin="normal"
@@ -134,7 +111,6 @@ class FormDialog extends React.Component {
                 <TextField
                   id="outlined-name"
                   label="$0.00"
-                  // className={classes.textField}
                   value={this.state.price}
                   onChange={this.handlePrice}
                   margin="normal"
@@ -145,7 +121,6 @@ class FormDialog extends React.Component {
                 <TextField
                   id="outlined-name"
                   label="QTY"
-                  // className={classes.textField}
                   value={this.state.inventory}
                   onChange={this.handleInventory}
                   margin="normal"
@@ -162,7 +137,7 @@ class FormDialog extends React.Component {
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleSubmit}
-                  // fullWidth="true"
+                  fullWidth="true"
                   variant="contained"
                   color="primary"
                 >
@@ -172,7 +147,7 @@ class FormDialog extends React.Component {
               <Grid item xs={6}>
                 <Button
                   onClick={this.handleClose}
-                  // fullWidth="true"
+                  fullWidth="true"
                   variant="contained"
                   color="secondary"
                 >
