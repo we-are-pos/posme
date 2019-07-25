@@ -9,6 +9,7 @@ module.exports = app => {
       cb(null, "uploads");
     },
     filename: function(req, file, cb) {
+      console.log(req.body.fieldname);
       cb(null, file.fieldname + "-" + Date.now());
     }
   });
@@ -28,29 +29,32 @@ module.exports = app => {
   });
 
   app.post("/item", upload.single("img"), (req, res) => {
+    req.body.img = `${req.file.filename}`;
     let name = req.body.name;
+    let desc = req.body.desc;
     let price = req.body.price;
     let inventory = req.body.inventory;
     console.log(name);
+    console.log(desc);
     console.log(price);
     console.log(inventory);
-    Item.create({ name, price, inventory })
+    Item.create({ name, desc, price, inventory })
       .then(response => console.log(response))
       .catch(err => console.log(err));
   });
 
-  // app.post("/item", upload.single("picture"), (req, res) => {
-  //   // multer attaches image url to req.file.filename
-  //   console.log(req.file);
-  //   req.body.img = `/${req.file.filename}`;
-  //   Item.create(req.body)
-  //     .then(({ _id, tab }) => {
-  //       Tab.updateOne({ _id: tab }, { $push: { items: _id } })
-  //         .then(res.sendStatus(200))
-  //         .catch(e => res.json(e));
-  //     })
-  //     .catch(e => console.log(e));
-  // });
+  app.post("/item", upload.single("picture"), (req, res) => {
+    // multer attaches image url to req.file.filename
+    console.log(req.file);
+    req.body.img = `/${req.file.filename}`;
+    Item.create(req.body)
+      .then(({ _id, tab }) => {
+        Tab.updateOne({ _id: tab }, { $push: { items: _id } })
+          .then(res.sendStatus(200))
+          .catch(e => res.json(e));
+      })
+      .catch(e => console.log(e));
+  });
   app.put("/item/:_id", (req, res) => {
     Item.findByIdAndUpdate({ _id: req.params._id }, { $set: req.body })
       .then(res.sendStatus(200))
