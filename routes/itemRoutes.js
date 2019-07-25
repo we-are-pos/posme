@@ -16,7 +16,7 @@ module.exports = app => {
   var upload = multer({ storage: storage });
 
   app.get("/item", (req, res) => {
-    Item.find({where: req.body.tabs})
+    Item.find({ where: req.body.tabs })
       .then(item => res.json(item))
       .catch(e => console.log(e));
   });
@@ -31,25 +31,14 @@ module.exports = app => {
     let name = req.body.name;
     let price = req.body.price;
     let inventory = req.body.inventory;
-    console.log(req);
     console.log(name);
     console.log(price);
     console.log(inventory);
     Item.create({ name, price, inventory })
       .then(response => console.log(response))
       .catch(err => console.log(err));
-      
-  app.post("/item", upload.single("picture"), (req, res) => { 
-    // multer attaches image url to req.file.filename
-    // req.body.img = `/${req.file.filename}`
-    Item.create(req.body)
-      .then(({ _id, tab }) => {
-        Tab.updateOne({ _id: tab }, { $push: { items: _id } })
-          .then(res.sendStatus(200))
-          .catch(e => res.json(e));
-      })
-      .catch(e => console.log(e));
   });
+
   // app.post("/item", upload.single("picture"), (req, res) => {
   //   // multer attaches image url to req.file.filename
   //   console.log(req.file);
@@ -72,6 +61,7 @@ module.exports = app => {
       .then(res.sendStatus(200))
       .catch(e => console.log(e));
   });
+};
 
 // This is the code to upload images into the database
 // app.post(‘/api/photo’, function (req, res) {
