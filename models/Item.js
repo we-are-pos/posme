@@ -7,13 +7,10 @@ module.exports = (Schema, model) => {
     tags: [{
       type: String
     }],
-    img: {
-      data: Buffer,
-      contentType: String
-    },
-    item: {
+    img: String,
+    tab: {
       type: Schema.Types.ObjectId,
-      ref: 'Category'
+      ref: 'Tab'
     },
 
 

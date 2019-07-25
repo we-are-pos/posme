@@ -2,7 +2,9 @@ const { Company } = require('../models')
 
 module.exports = app => {
     app.get('/company', (req, res) => {
-        Company.find({})
+        Company.find({_id: req.body._id})
+            .populate('users')
+            .populate('categories')
             .then(company => res.json(company))
             .catch(e => console.log(e))
     })
