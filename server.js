@@ -64,3 +64,5 @@ require("mongoose")
 //   }
 // })
 // )
+
+console.log('hi')
