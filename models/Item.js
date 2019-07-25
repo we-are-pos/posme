@@ -8,7 +8,7 @@ module.exports = (Schema, model) => {
       type: String
     }],
     img: String,
-    category: {
+    tab: {
       type: Schema.Types.ObjectId,
       ref: 'Tab'
     },

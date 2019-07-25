@@ -10,6 +10,8 @@ import Grid from "@material-ui/core/Grid"
 import ShoppingBag from './images/icon_bag.svg'
 import CardButton from '../CardButton'
 import Calculator from '../Calculator'
+import SwipeableList from '../SwipeableList'
+import SwipeableListItem from '../SwipeableList/SwipeableListItem.js'
  
 
 import Dialog from '@material-ui/core/Dialog';
@@ -120,7 +122,10 @@ export default function PermanentDrawerLeft() {
           <img alt='bag' src={ShoppingBag} />
         </Box>
         <Divider />
-        <typography className={classes.productName} >Product Name</typography>
+        <typography className={classes.productName}>Product Name</typography>
+        <SwipeableList>
+          <SwipeableListItem>
+            {/* this.state.product.map(item =>) */}
           <Box
           display="flex"
           flexWrap="wrap"
@@ -131,6 +136,8 @@ export default function PermanentDrawerLeft() {
             <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
             <typography className={classes.countDisplay}>{count}</typography>
           </Box>
+            </SwipeableListItem>
+            </SwipeableList>
         <Divider />
         <Box
         display="flex"
@@ -141,6 +148,15 @@ export default function PermanentDrawerLeft() {
         bgcolor="background.paper"
         css={{ height: 800 }}
         >
+        <Box
+        display="flex"
+        flexWrap="wrap"
+        border={1}
+        borderColor="grey.300"
+        width='100%'
+        >
+          Total Amount 
+        </Box>
         <Grid container spacing={2}>
           <Grid item xs={6}>
           <Button className={classes.paymentButton} variant="outlined" color="primary" onClick={handleClickOpen}>

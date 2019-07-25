@@ -14,17 +14,11 @@ const useStyles = makeStyles({
 })
 
 
-export default function ImgMediaCard(props) {
+export default function ItemCardList(props) {
   const classes = useStyles()
-  // console.log(props.item)
-  // props.tabs.map(tabs => {
-  //   tabs.tabs.map(tabs => {
-  //     return console.log(tabs.name)
-  //   })
-  //   return (tabs.tabs)
-  // })
+
   useEffect(() => {
-    props.handleGetItems({})
+    props.handleGetTabs({})
   }, [])
 
   return (
