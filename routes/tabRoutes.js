@@ -1,8 +1,10 @@
 const { Tab, Company } = require('../models')
 
 module.exports = app => {
-    app.get('/tab', (req, res) => {
-        Tab.find({})
+    app.get('/tab/:company', (req, res) => {
+        Tab.find({company: req.params.company})
+            .populate('company')
+            .populate('items')
             .then(tab => res.json(tab))
             .catch(e => console.log(e))
     })
