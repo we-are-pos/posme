@@ -1,11 +1,19 @@
 const { Item, Tab } = require("../models");
 
 module.exports = app => {
+  // app.get("/item", (req, res) => {
+  //   Item.find({ where: req.body.tabs })
+  //     .then(item => res.json(item))
+  //     .catch(e => console.log(e));
+  // });
+
   app.get("/item", (req, res) => {
-    Item.find({ where: req.body.tabs })
-      .then(item => res.json(item))
+    Item.find({})
+      .populate("tab")
+      .then(items => res.json(items))
       .catch(e => console.log(e));
   });
+
   app.get("/item/:_id", (req, res) => {
     Item.findById(req.params._id)
       .populate("tab")
@@ -14,7 +22,6 @@ module.exports = app => {
   });
 
   app.post("/item", (req, res) => {
-    req.body.img = `${req.file.filename}`;
     let name = req.body.name;
     let desc = req.body.desc;
     let price = req.body.price;

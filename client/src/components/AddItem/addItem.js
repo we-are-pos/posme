@@ -46,7 +46,6 @@ class FormDialog extends React.Component {
     console.log("hello", files[0]);
   };
   handleSubmit = event => {
-    console.log("submit button working");
     event.preventDefault();
     const { name, desc, price, inventory } = this.state;
     console.log(
@@ -63,6 +62,18 @@ class FormDialog extends React.Component {
       desc: "",
       price: "",
       inventory: ""
+    });
+  };
+
+  handleItem = _ => {
+    console.log("Running search");
+    axios.get("/item").then(({ data }) => {
+      this.setState({
+        name: data.name,
+        desc: data.desc,
+        price: data.price,
+        inventory: data.inventory
+      });
     });
   };
   render() {
@@ -82,7 +93,7 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <PhotoUpload handleSave={this.addPhoto} />
+          {/* <PhotoUpload handleSave={this.addPhoto} /> */}
           <DialogContent>
             Open Camera
             <TextField
@@ -140,6 +151,7 @@ class FormDialog extends React.Component {
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleSubmit}
+                  onClick={this.handleItem}
                   fullWidth="true"
                   variant="contained"
                   color="primary"
