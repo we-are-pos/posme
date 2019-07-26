@@ -1,53 +1,3 @@
-// import React, { useState, useEffect } from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import Paper from '@material-ui/core/Paper'
-// import Tabs from '@material-ui/core/Tabs'
-// import Tab from '@material-ui/core/Tab'
-// import ItemCardList from '../Card'
-
-// const useStyles = makeStyles({
-//     root: {
-//         flexGrow: 1,
-//     },
-// })
-
-// export default function CenteredTabs(props) {
-//     const classes = useStyles()
-//     const [value, setValue] = useState(0)
-//     const [tabId, setTabId] = useState(0)
-
-//     useEffect(() => {
-//         props.handleGetTabs({})
-//     }, [])
-
-//     function handleChange(event, newValue) {
-//         setTabId(event.currentTarget.id)
-//         setValue(newValue)
-//     }
-
-//     return (
-//         <Paper className={classes.root}>
-//             <Tabs
-//                 value={value}
-//                 onChange={handleChange}
-//                 onClick={props.handleGetTabs}
-//                 indicatorColor="primary"
-//                 textColor="primary"
-//             >
-//                 {props.tabs.map((tabs, i) => {
-//                     return <Tab id={tabs._id} label={tabs.name} />
-//                 })}
-//             </Tabs>
-//             {
-//                 <ItemCardList
-//                     items={props.items.filter(x => x.tab === tabId)}
-//                     tabs={props.tabs}
-//                     handleGetTabs={props.handleGetTabs}
-//                 />}
-//         </Paper>
-//     );
-// }
-
 import React from "react";
 import PropTypes from "prop-types";
 // import SwipeableViews from 'react-swipeable-views';
@@ -57,10 +7,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import miniSucculents from "../../assets/Minisucc.jpg";
-import wildFlowers from "../../assets/WildFlowers.jpg";
-import hensAndChicks from "../../assets/Hens&Chicks.jpg";
-import arrangements from "../../assets/Arrangements.jpg";
+import Arrangements from "../../assets/Arrangements_Inventory.jpg";
+import HensAndChicks from "../../assets/Hens&Chicks_Inventory.jpg";
+import MiniSucculents from "../../assets/Minisucc_Inventory.jpg";
+import WildFlowers from "../../assets/WildFlowers_Inventory.jpg";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -135,20 +85,20 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       > */}
       <TabPanel value={value} index={0} dir={theme.direction}>
-        {/* place " mini Succulents image here" */}
-        <img alt="miniSucculents" src={miniSucculents} />
+        {/* place " mini Succulents Inventory image here" */}
+        <img alt="miniSucculents" src={MiniSucculents} />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        {/* place " Arrangements image here" */}
-        <img alt="arrangements" src={arrangements} />
+        {/* place " Arrangements Inventory image here" */}
+        <img alt="arrangements" src={Arrangements} />
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
-        {/* place " Hens and Chicks image here" */}
-        <img alt="hensAndChicks" src={hensAndChicks} />
+        {/* place " Hens and Chicks Inventory image here" */}
+        <img alt="hensAndChicks" src={HensAndChicks} />
       </TabPanel>
       <TabPanel value={value} index={3} dir={theme.direction}>
-        {/* place " Wild Flowers image here" */}
-        <img alt="wildFlowers" src={wildFlowers} />
+        {/* place " Wild Flowers Inventory image here" */}
+        <img alt="wildFlowers" src={WildFlowers} />
       </TabPanel>
       {/* </SwipeableViews> */}
     </div>
