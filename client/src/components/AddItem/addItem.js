@@ -65,7 +65,8 @@ class FormDialog extends React.Component {
     });
   };
 
-  handleItem = _ => {
+  handleItem = event => {
+    event.preventDefault();
     console.log("Running search");
     axios.get("/item").then(({ data }) => {
       this.setState({
@@ -151,7 +152,7 @@ class FormDialog extends React.Component {
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleSubmit}
-                  onClick={this.handleItem}
+                  // onClick={this.handleItem}
                   fullWidth="true"
                   variant="contained"
                   color="primary"
