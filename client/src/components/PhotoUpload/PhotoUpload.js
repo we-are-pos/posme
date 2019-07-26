@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { DropzoneDialog } from "material-ui-dropzone"
-import Button from "@material-ui/core/Button"
+import React, { Component } from "react";
+import { DropzoneDialog } from "material-ui-dropzone";
+import Button from "@material-ui/core/Button";
 
 export default class DropzoneDialogExample extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class DropzoneDialogExample extends Component {
         <Button onClick={this.handleOpen.bind(this)}>Add Image</Button>
         <DropzoneDialog
           open={this.state.open}
-          onSave={this.handleSave.bind(this)}
+          onSave={this.props.handleSave}
           acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
           showPreviews={true}
           maxFileSize={5000000}
