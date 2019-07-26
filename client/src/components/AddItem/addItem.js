@@ -164,7 +164,7 @@ class FormDialog extends React.Component {
                   Submit
                 </Button>
               </Grid>
-              <Grid item xs={6}>
+              {/* <Grid item xs={6}>
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleItems}
@@ -174,7 +174,7 @@ class FormDialog extends React.Component {
                 >
                   Add Item
                 </Button>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={6}>
                 <Button
