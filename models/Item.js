@@ -4,16 +4,16 @@ module.exports = (Schema, model) => {
     desc: String,
     price: Number,
     inventory: Number,
-    tags: [{
-      type: String
-    }],
+    tags: [
+      {
+        type: String
+      }
+    ],
     img: String,
     tab: {
       type: Schema.Types.ObjectId,
-      ref: 'Tab'
-    },
-
-
-  })
-  return model('Item', Item)
-}
+      ref: "Tab"
+    }
+  });
+  return model("Item", Item);
+};

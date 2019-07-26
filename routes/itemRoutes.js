@@ -1,26 +1,19 @@
-const multer = require("multer");
-const fs = require("fs");
 const { Item, Tab } = require("../models");
 
 module.exports = app => {
-  // SET STORAGE
-  var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, "uploads");
-    },
-    filename: function(req, file, cb) {
-      console.log(req.body.fieldname);
-      cb(null, file.fieldname + "-" + Date.now());
-    }
-  });
-
-  var upload = multer({ storage: storage });
+  // app.get("/item", (req, res) => {
+  //   Item.find({ where: req.body.tabs })
+  //     .then(item => res.json(item))
+  //     .catch(e => console.log(e));
+  // });
 
   app.get("/item", (req, res) => {
-    Item.find({ where: req.body.tabs })
-      .then(item => res.json(item))
+    Item.find({})
+      .populate("tab")
+      .then(items => res.json(items))
       .catch(e => console.log(e));
   });
+
   app.get("/item/:_id", (req, res) => {
     Item.findById(req.params._id)
       .populate("tab")
@@ -28,8 +21,7 @@ module.exports = app => {
       .catch(e => console.log(e));
   });
 
-  app.post("/item", upload.single("img"), (req, res) => {
-    req.body.img = `${req.file.filename}`;
+  app.post("/item", (req, res) => {
     let name = req.body.name;
     let desc = req.body.desc;
     let price = req.body.price;
@@ -43,10 +35,7 @@ module.exports = app => {
       .catch(err => console.log(err));
   });
 
-  app.post("/item", upload.single("picture"), (req, res) => {
-    // multer attaches image url to req.file.filename
-    console.log(req.file);
-    req.body.img = `/${req.file.filename}`;
+  app.post("/item", (req, res) => {
     Item.create(req.body)
       .then(({ _id, tab }) => {
         Tab.updateOne({ _id: tab }, { $push: { items: _id } })

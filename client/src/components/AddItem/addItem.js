@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import PhotoUpload from "../PhotoUpload";
+import { uploadPhoto } from "../../s3";
 
 class FormDialog extends React.Component {
   state = {
@@ -17,7 +18,12 @@ class FormDialog extends React.Component {
     inventory: "",
     desc: "",
     submit: "",
-    img: ""
+    img: "",
+    resName: "",
+    resDesc: "",
+    resPrice: "",
+    resInventory: "",
+    resItems: ""
   };
   addPhoto = event => {
     this.setState({ img: event.target.value });
@@ -40,8 +46,11 @@ class FormDialog extends React.Component {
   handleDescription = event => {
     this.setState({ desc: event.target.value });
   };
+  addPhoto = files => {
+    // console.log("hello", uploadPhoto(files));
+    console.log("hello", files[0]);
+  };
   handleSubmit = event => {
-    console.log("submit button working");
     event.preventDefault();
     const { name, desc, price, inventory } = this.state;
     console.log(
@@ -58,6 +67,19 @@ class FormDialog extends React.Component {
       desc: "",
       price: "",
       inventory: ""
+    });
+  };
+
+  handleItems = _ => {
+    console.log("Running search");
+    axios.get("/item").then(({ data }) => {
+      this.setState({
+        name: data.resName,
+        desc: data.resDesc,
+        price: data.resPrice,
+        inventory: data.resInventory
+        // resItems: data
+      });
     });
   };
   render() {
@@ -77,18 +99,7 @@ class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <form action="/item" encType="multipart/form-data" method="POST">
-            <input
-              type="file"
-              onChange={this.addPhoto}
-              accept="image/*"
-              value={this.state.img}
-            />
-          <input type="submit" value="Upload Photo" />
-          <form action="/item" method="POST" />
-          {/* <PhotoUpload /> */}
-          </form>
-
+          {/* <PhotoUpload handleSave={this.addPhoto} /> */}
           <DialogContent>
             Open Camera
             <TextField
@@ -138,7 +149,6 @@ class FormDialog extends React.Component {
                 />
               </Grid>
             </Grid>
-            {/* </form> */}
           </DialogContent>
 
           <DialogActions>
@@ -151,9 +161,21 @@ class FormDialog extends React.Component {
                   variant="contained"
                   color="primary"
                 >
-                  Add Item
+                  Submit
                 </Button>
               </Grid>
+              {/* <Grid item xs={6}>
+                <Button
+                  // onClick={handleClose}
+                  onClick={this.handleItems}
+                  fullWidth="true"
+                  variant="contained"
+                  color="primary"
+                >
+                  Add Item
+                </Button>
+              </Grid> */}
+
               <Grid item xs={6}>
                 <Button
                   onClick={this.handleClose}
@@ -166,7 +188,6 @@ class FormDialog extends React.Component {
               </Grid>
             </Grid>
           </DialogActions>
-          {/* </form> */}
         </Dialog>
       </div>
     );
