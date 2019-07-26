@@ -5,7 +5,7 @@ const CardButton = _ => {
   return (
     <div className='creditcard'>
       <button
-        className='cardOption' >
+        className='cardOption'>
         CARD
       </button>
     </div>

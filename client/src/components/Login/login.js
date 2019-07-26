@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PosmeLogo from './images/PosmeLogo.png'
 import './login.css'
 import TextField from '@material-ui/core/TextField'
 import Grid from "@material-ui/core/Grid"
+import Home from '../../pages/Home'
 
 const Login = props => {
   return (
@@ -38,14 +40,16 @@ const Login = props => {
           value={props.password}
         />
         <div>
-          <button
-            className='login'
-            type='button'
-            name='data'
-            onClick={props.handleLogInUser}
-          >
-            LOGIN
-          </button>
+          <Link to='/home'>
+            <button
+              className='login'
+              type='button'
+              name='data'
+              onClick={props.handleLogInUser}
+            >
+              LOGIN
+            </button>
+          </Link>
         </div>
       </form>
       </Grid>
