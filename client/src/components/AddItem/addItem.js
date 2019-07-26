@@ -22,7 +22,8 @@ class FormDialog extends React.Component {
     resName: "",
     resDesc: "",
     resPrice: "",
-    resInventory: ""
+    resInventory: "",
+    resItems: ""
   };
   addPhoto = event => {
     this.setState({ img: event.target.value });
@@ -69,14 +70,15 @@ class FormDialog extends React.Component {
     });
   };
 
-  getItems = _ => {
+  handleItems = _ => {
     console.log("Running search");
-    axios.get("/item").then(({ items }) => {
+    axios.get("/item").then(({ data }) => {
       this.setState({
-        name: items.resName,
-        desc: items.resDesc,
-        price: items.resPrice,
-        inventory: items.resInventory
+        name: data.resName,
+        desc: data.resDesc,
+        price: data.resPrice,
+        inventory: data.resInventory
+        // resItems: data
       });
     });
   };
@@ -155,7 +157,17 @@ class FormDialog extends React.Component {
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleSubmit}
-                  onClick={this.handleItem}
+                  fullWidth="true"
+                  variant="contained"
+                  color="primary"
+                >
+                  Submit
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  // onClick={handleClose}
+                  onClick={this.handleItems}
                   fullWidth="true"
                   variant="contained"
                   color="primary"
@@ -163,6 +175,7 @@ class FormDialog extends React.Component {
                   Add Item
                 </Button>
               </Grid>
+
               <Grid item xs={6}>
                 <Button
                   onClick={this.handleClose}
