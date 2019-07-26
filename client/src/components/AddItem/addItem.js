@@ -18,7 +18,11 @@ class FormDialog extends React.Component {
     inventory: "",
     desc: "",
     submit: "",
-    img: ""
+    img: "",
+    resName: "",
+    resDesc: "",
+    resPrice: "",
+    resInventory: ""
   };
   addPhoto = event => {
     this.setState({ img: event.target.value });
@@ -65,15 +69,14 @@ class FormDialog extends React.Component {
     });
   };
 
-  handleItem = event => {
-    event.preventDefault();
+  getItems = _ => {
     console.log("Running search");
-    axios.get("/item").then(({ data }) => {
+    axios.get("/item").then(({ items }) => {
       this.setState({
-        name: data.name,
-        desc: data.desc,
-        price: data.price,
-        inventory: data.inventory
+        name: items.resName,
+        desc: items.resDesc,
+        price: items.resPrice,
+        inventory: items.resInventory
       });
     });
   };
@@ -152,7 +155,7 @@ class FormDialog extends React.Component {
                 <Button
                   // onClick={handleClose}
                   onClick={this.handleSubmit}
-                  // onClick={this.handleItem}
+                  onClick={this.handleItem}
                   fullWidth="true"
                   variant="contained"
                   color="primary"
