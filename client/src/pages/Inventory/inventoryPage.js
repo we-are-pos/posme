@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import NavBar from '../../components/Navbar'
-import AddTab from '../../components/AddTab'
-import AddItem from '../../components/AddItem'
+// import AddTab from '../../components/AddTab'
+// import AddItem from '../../components/AddItem'
 import Truck from '../../components/Truck'
-import CenteredTabs from '../../components/NavbarTab'
+// import CenteredTabs from '../../components/NavbarTab'
 import axios from 'axios'
+import NavbarTab from '../../components/NavbarTab'
+
 
 class Inventory extends Component {
   state = {
@@ -40,13 +42,15 @@ class Inventory extends Component {
     return (
       <div>
         <NavBar />
-        <AddTab />
-        <CenteredTabs
+        <NavbarTab />
+
+        {/* <AddTab /> */}
+        {/* <CenteredTabs
           items={this.state.items}
           tabs={this.state.tabs}
           handleGetTabs={this.handleGetTabs}
-        />
-        <AddItem />
+        /> */}
+        {/* <AddItem /> */}
         <Truck />
       </div>
     )
