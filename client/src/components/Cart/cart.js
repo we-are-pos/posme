@@ -173,6 +173,7 @@ export default function PermanentDrawerLeft() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
+        maxWidth="xs"
       >
         {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>

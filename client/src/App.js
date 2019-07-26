@@ -13,7 +13,6 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* <Cart /> */}
         <Router>
           <div>
             <Route path="/login" component={Login} />

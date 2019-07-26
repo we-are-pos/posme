@@ -1,6 +1,7 @@
 import React from 'react'
 import KingCactus from './images/giphy.gif'
 import './ThankYou.css'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const ThankYouPage = _ => {
   return (
@@ -24,11 +25,17 @@ const ThankYouPage = _ => {
           type='button' >
           Email
         </button>
-        <button
-          className='cancel'
-          type='button' >
-          Cancel
-        </button>
+
+        <Router>
+          <Link to='/home'>
+            <button
+              className='cancel'
+              type='button' >
+              Cancel
+            </button>
+          </Link>
+        </Router>
+
       </div>
     </>
   )

@@ -1,3 +1,25 @@
-.number {
-    background-color: #4E5152,
+.numberButton {
+    /* background-color: #41C8E8;
+    color: #FFFFFF; */
+    opacity: 100%;
+    font-family: 'Helvetica neue';
+    font-size: 20px;
+    text-align: center;
+    height: 50px; 
+    width: 80px;
+}
+
+.delete {
+    height: 50px; 
+    width: 100px;
+}
+
+.enter {
+    height: 50px;
+    width: 80px;
+}
+
+.money {
+    height: 50px; 
+    width: 80px;
 }
