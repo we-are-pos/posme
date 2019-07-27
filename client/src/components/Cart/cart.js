@@ -77,14 +77,18 @@ const useStyles = makeStyles(theme => ({
   productName: {
     marginLeft: 20,
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 20,
   },
+  totalAmount: {
+    fontSize: 30,
+    marginBottom:20,
+  }
 }));
 
 export default function PermanentDrawerLeft() {
   const classes = useStyles()
 
-  const [count, setCountState] = useState(0)
+  const [count, setCountState] = useState(1)
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -119,8 +123,7 @@ export default function PermanentDrawerLeft() {
         >
           <img alt='bag' src={ShoppingBag} />
         </Box>
-        <Divider />
-        <typography className={classes.productName}>Product Name</typography>
+        <typography className={classes.productName}>Sac-Ramento $1.99</typography>
         <SwipeableList>
           <SwipeableListItem>
             {/* this.state.product.map(item =>) */}
@@ -136,7 +139,61 @@ export default function PermanentDrawerLeft() {
           </Box>
             </SwipeableListItem>
             </SwipeableList>
-        <Divider />
+
+        <typography className={classes.productName}>Basic Beach $1.99</typography>
+        <SwipeableList>
+          <SwipeableListItem>
+            {/* this.state.product.map(item =>) */}
+          <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="center"
+          css={{ height: 70 }}
+          >
+            <Button className={classes.plusButton} onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
+            <typography className={classes.countDisplay}>{count}</typography>
+          </Box>
+            </SwipeableListItem>
+            </SwipeableList>
+
+        <typography className={classes.productName}>Topsy Turvey $1.99</typography>
+        <SwipeableList>
+          <SwipeableListItem>
+            {/* this.state.product.map(item =>) */}
+          <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="center"
+          css={{ height: 70 }}
+          >
+            <Button className={classes.plusButton} onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
+            <typography className={classes.countDisplay}>{count}</typography>
+          </Box>
+            </SwipeableListItem>
+            </SwipeableList>
+
+
+        <typography className={classes.productName}>Marigold $1.99</typography>
+        <SwipeableList>
+          <SwipeableListItem>
+            {/* this.state.product.map(item =>) */}
+          <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="center"
+          css={{ height: 70 }}
+          >
+            <Button className={classes.plusButton} onClick={_ => {setCountState(count + 1)}} variant="outlined" size="small">+</Button>
+            <Button className={classes.minusButton} onClick={_ => {setCountState(count -1)}} variant="outlined" size="small">–</Button>
+            <typography className={classes.countDisplay}>{count}</typography>
+          </Box>
+            </SwipeableListItem>
+            </SwipeableList>
+
+
+
         <Box
         display="flex"
         flexWrap="wrap"
@@ -147,13 +204,14 @@ export default function PermanentDrawerLeft() {
         css={{ height: 800 }}
         >
         <Box
+        className={classes.totalAmount}
         display="flex"
         flexWrap="wrap"
         border={1}
         borderColor="grey.300"
         width='100%'
         >
-          Total Amount 
+          $7.96
         </Box>
         <Grid container spacing={2}>
           <Grid item xs={6}>
